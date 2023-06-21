@@ -1,6 +1,6 @@
 # Chat with your data sources
 
-This is a chat application that leverages the power of GPT-3.5-turbo to provide conversational responses with access to multiple data sources (SQL, Excel files and CSV files). SQL databases can be accessed via an ordinary connection, whilst Excel and CSV files are loaded into SQLite databases at runtime for the chatbot to query. This method allows us to leverage the power of GPT's text2SQL capabilities, maximising the accuracy of our results.
+This is a chat application that leverages the power of GPT-3.5-turbo to provide conversational responses with access to multiple data sources (SQL, Excel files and CSV files). SQL databases are accessed via an ordinary connection, whilst Excel and CSV files are loaded into SQLite databases at runtime for the chatbot to query. This method allows us to leverage the power of GPT's text2SQL capabilities, maximising the accuracy of our results.
 
 ## Features
 
