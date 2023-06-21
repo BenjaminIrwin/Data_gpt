@@ -1,47 +1,42 @@
-# MBAGPT: Chatting with Multiple Data Sources
+# Chat with your data sources
 
-MBAGPT is a chat application that leverages the power of GPT-3.5-turbo to provide conversational responses with access to multiple data sources. It allows users to ask questions and receive answers from different knowledge bases (vectorDBs), such as Alex Hormozi, Warren Buffett and Richard Branson as well as answer general queries with the ChatGPT API as a fallback.
+This is a chat application that leverages the power of GPT-3.5-turbo to provide conversational responses with access to multiple data sources (SQL, Excel files and CSV files).
 
 ## Features
 
 - Chat interface for interacting with the chatbot powered by GPT-3.5-turbo.
-- Integration with Hormozi, Buffett and Branson databases for retrieving relevant documents.
+- 'Safe' mode to prevent the chatbot from accessing the databases.
 - Semantic search functionality to provide informative snippets from the databases.
 - Intent classification to route user queries to the appropriate database.
-- HTML templates for displaying chat history and messages.
-- Persistence of embeddings using the Chroma vector store.
 - OpenAI API key integration for authentication.
 
 ## Installation
 
-1. Clone the repository:
-
-```
-git clone https://github.com/wombyz/MBAGPT.git
-```
-
-2. Install the required dependencies:
+1. Install the required dependencies:
 
 ```
 pip install -r requirements.txt
 ```
 
-3. Set up your credentials:
+2. Set up your credentials and data sources:
 
 - Sign up on the OpenAI website and obtain an API key.
 - Create a new file called "secrets.toml" in the .streamlit folder.
-- Set your OpenAI API key (required) and pinecone creds (optional) in the secrets.toml file or as an environment variable.
-- Update the code in the app to use the correct method for accessing the API key.
+- Set your OpenAI API key and in the secrets.toml file.
+- List your SQL databases in the secrets.toml file, providing your database url.
+- List your local file directories in the secrets.toml file, providing the path to the directory. This directory should contain CSV and Excel files that you want the chatbot to access. Note that you can organise these files in subfolders to improve the chatbot's ability to find the correct data.
+- For each database, provide a relevant example question which will be used to improve the chatbot's ability to route queries to the correct database.
 
-4. Run the indexing script to create the vector databases:
+
+Example secrets.toml file:
 
 ```
-python indexing.py
+OPENAI_API_KEY = 'sk-fawueblgfenkvasqogubhadewalfnwrl'
+SQL_DATABASES = { 'company'= {'DB_URL' = 'jdbc:mysql://localhost:3306/example', 'EXAMPLE_QUESTION' = 'How many employees work in the UK?'} }
+LOCAL_FILE_DATA = { 'disasters_db' = {'DIRECTORY' = 'local_file_data/disasters','EXAMPLE_QUESTION' = 'How many hurricanes were there in Louisiana?'}, 'movies'= {'DIRECTORY' = 'local_file_data/movies','EXAMPLE_QUESTION' = 'How many movies were released in 2019?'}, 'urban_living'= {'DIRECTORY' = 'local_file_data/urban_living','EXAMPLE_QUESTION' = 'How many people live in New York City?'} }
 ```
 
-This script will create the Buffet and Branson vector databases by indexing the documents. Make sure to have the necessary PDF documents in the appropriate directories (`./docs/buffett/` and `./docs/branson/`) before running the script.
-
-5. Run the application:
+4. Run the application:
 
 ```
 streamlit run app.py
@@ -57,18 +52,3 @@ streamlit run app.py
 
 4. The chat history will be displayed on the screen, showing both user and assistant messages.
 
-## Contributing
-
-Contributions are welcome! If you would like to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-
-2. Create a new branch for your feature or bug fix.
-
-3. Implement your changes and ensure that the code passes all tests.
-
-4. Submit a pull request with a detailed description of your changes.
-
-## License
-
-This project is licensed under the MIT License.
