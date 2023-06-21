@@ -37,8 +37,8 @@ LOCAL_FILE_DATA = { 'disasters' = {'DIRECTORY' = 'local_file_data/disasters','EX
 ```
 
 - This example will create a chatbot with access to FOUR databases. The four will be comprised of one existing MYSQL database ('company') and three more SQLite databases ('disasters', 'movies' and 'urban living'). Each of these SQLite databases will be created when the app starts up from the CSV and excel files provided in the ```DIRECTORY``` folders.
-- To extend the example, the 'local_file_data/disasters' may contain three files: ```hurricanes.csv```, ```earthquakes.xls``` and ```volcanoes.csv```. At startup time an SQLite database will be created called disasters.db, with three tables: ```hurricanes```, ```earthquakes``` and ```volcanoes```.
-- Note that you, while the example above has just one, you could also have multiple sql databases.
+- To extend the example, the folder ```local_file_data/disasters``` may contain three files: ```hurricanes.csv```, ```earthquakes.xls``` and ```volcanoes.csv```. At startup time an SQLite database will be created called ```disasters.db```, with three tables: ```hurricanes```, ```earthquakes``` and ```volcanoes```. The chatbot will be able to easily query ```disasters.db```.
+- Note that, while the example above has just one, you could also have multiple sql databases.
 
 
 4. Run the application:
